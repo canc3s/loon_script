@@ -9,7 +9,7 @@ MITM添加:auth.alipan.com,auth.aliyundrive.com
 */
 
 let ckName = "aliyun_data"
-let userCookie = $persistentStore.read(ckName);
+let userCookie = $persistentStore.read(ckName) || [];;
 
 async function getRespBody(refresh_token) {
     //获取用户名作为标识键
