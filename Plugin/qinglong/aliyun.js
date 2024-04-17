@@ -7,6 +7,33 @@
 MITM添加:auth.alipan.com,auth.aliyundrive.com
 
 */
+
+async function getRespBody(refresh_token) {
+    //获取用户名作为标识键
+    const options = {
+        url: `https://auth.aliyundrive.com/v2/account/token`,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            refresh_token: refresh_token,
+            grant_type: 'refresh_token'
+        })
+    };
+    return new Promise(resolve => {
+        $httpClient.post(options, async (error, response, data) => {
+            try {
+                let result = JSON.parse(data);
+                resolve(result);
+            } catch (error) {
+                console.log(error);
+                resolve();
+            }
+        });
+    });
+}
+
+
 !(async () => {
     if ($request.method != 'OPTIONS') {
         const body = JSON.parse($request.body);
