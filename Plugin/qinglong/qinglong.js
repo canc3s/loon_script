@@ -124,7 +124,7 @@ updateCkEnv({
     name: "DD_TOKEN",
     value: ddlqticket,
 });
-let aliyun_data = JSON.parse($persistentStore.read("aliyun_data"));
+let aliyun_data = $persistentStore.read("aliyun_data");
 updateCkEnv({
     name: "aliyun_data",
     value: aliyun_data,
