@@ -50,18 +50,18 @@ async function getRespBody(refresh_token) {
         //是否存在多账号数据
         if ((Array.isArray(userCookie)) && userCookie.length == 0) {
             userCookie.push({ "name": nick_name, "refresh_token": refresh_token, "device_id": device_id });
-            $persistentStore.write(userCookie, ckName);
+            $persistentStore.write(JSON.stringify(userCookie), ckName);
             console.log(`🎉${nick_name}获取token成功!`);
         } else {
             userCookie = eval('(' + userCookie + ')');
             let index = userCookie.findIndex(e => (e.name == nick_name && e.device_id == device_id));
             if (userCookie[index]) {
                 userCookie[index].refresh_token = refresh_token;
-                $persistentStore.write(userCookie, ckName);
+                $persistentStore.write(JSON.stringify(userCookie), ckName);
                 console.log(`🎉${nick_name}更新token成功!`);
             } else {
                 userCookie.push({ "name": nick_name, "refresh_token": refresh_token, "device_id": device_id });
-                $persistentStore.write(userCookie, ckName);
+                $persistentStore.write(JSON.stringify(userCookie), ckName);
                 console.log(`🎉${nick_name}获取token成功!`);
             }
         }
