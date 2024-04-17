@@ -8,7 +8,7 @@ MITM添加:auth.alipan.com,auth.aliyundrive.com
 
 */
 
-userCookie = $persistentStore.read("aliyun_data");
+let userCookie = $persistentStore.read("aliyun_data");
 
 async function getRespBody(refresh_token) {
     //获取用户名作为标识键
